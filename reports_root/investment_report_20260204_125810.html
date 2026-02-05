@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투자 분석 리포트 - 2026.02.04</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; background: #f8fafc; }
+        .report-container { max-width: 1200px; margin: 0 auto; }
+        .card { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .gradient-header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); }
+        .signal-badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .progress-bar { height: 8px; border-radius: 4px; background: #e5e7eb; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-50">
+<div class="report-container p-4 md:p-8">
+    <div class="card gradient-header text-white p-6 mb-6">
+        <div class="flex justify-between items-start flex-wrap gap-4">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-3xl">📊</span>
+                    <div>
+                        <p class="text-blue-200 text-sm font-medium">INVESTMENT ANALYSIS REPORT</p>
+                        <h1 class="text-2xl md:text-3xl font-bold">투자 전략 분석 리포트</h1>
+                    </div>
+                </div>
+                <p class="text-blue-100 text-sm mt-2">AI 기반 멀티팩터 분석 시스템</p>
+            </div>
+            <div class="text-right">
+                <p class="text-blue-200 text-xs">발행일시</p>
+                <p class="text-xl font-bold">2026.02.04</p>
+                <p class="text-blue-200 text-sm">12:58:10</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-white/20">
+            <div class="text-center">
+                <p class="text-blue-200 text-xs mb-1">종합 점수</p>
+                <p class="text-3xl font-bold">85</p>
+                <p class="text-blue-200 text-xs">/100</p>
+            </div>
+            <div class="text-center">
+                <p class="text-blue-200 text-xs mb-1">투자 판단</p>
+                <p class="text-2xl font-bold">STRONG_BUY</p>
+            </div>
+            <div class="text-center">
+                <p class="text-blue-200 text-xs mb-1">리스크 레벨</p>
+                <p class="text-2xl font-bold">MEDIUM</p>
+            </div>
+            <div class="text-center">
+                <p class="text-blue-200 text-xs mb-1">시장 사이클</p>
+                <p class="text-lg font-bold">MID_EXPANSIO</p>
+            </div>
+        </div>
+    </div>
+    <div class="card p-6 mb-6" style="border-left: 4px solid #059669;">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+            <div>
+                <h2 class="text-lg font-bold text-slate-800 mb-1">💡 핵심 투자 판단</h2>
+                <p class="text-2xl font-bold" style="color: #059669;">
+                    위험자산 적극 매수
+                </p>
+            </div>
+            <div class="flex gap-3 flex-wrap">
+                <span class="signal-badge" style="background: #10b98120; color: #10b981;">
+                    매크로: BULLISH
+                </span>
+                <span class="signal-badge" style="background: #10b98120; color: #10b981;">
+                    감성: POSITIVE
+                </span>
+                <span class="signal-badge" style="background: #10b98120; color: #10b981;">
+                    로테이션: RISK_ON
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div class="card p-6">
+            <h3 class="text-lg font-bold text-slate-800 mb-4">📊 추천 자산배분</h3>
+            <div class="flex justify-center mb-4">
+                <canvas id="allocationChart" style="max-width: 200px; max-height: 200px;"></canvas>
+            </div>
+            <div class="space-y-3">
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="font-medium">주식</span>
+                        <span class="font-bold">70%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%; background: #3b82f6;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="font-medium">채권</span>
+                        <span class="font-bold">20%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 20%; background: #10b981;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="font-medium">현금</span>
+                        <span class="font-bold">10%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 10%; background: #f59e0b;"></div>
+                    </div>
+                </div></div>
+            <div class="mt-4 pt-4 border-t">
+                <p class="text-xs text-slate-500">포트폴리오 규모</p>
+                <p class="text-xl font-bold text-slate-800">100,000,000원</p>
+            </div>
+        </div>
+        
+        <div class="card p-6">
+            <h3 class="text-lg font-bold text-slate-800 mb-4">🌍 매크로 지표</h3>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                    <div>
+                        <p class="text-xs text-slate-500">기준금리</p>
+                        <p class="text-xl font-bold">3.59%</p>
+                    </div>
+                    <span class="text-sm font-medium" style="color: #ef4444;">
+                        +0.01%
+                    </span>
+                </div>
+                <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                    <div>
+                        <p class="text-xs text-slate-500">10Y-2Y 스프레드</p>
+                        <p class="text-xl font-bold">0.68%</p>
+                    </div>
+                    <span class="text-xs px-2 py-1 rounded" style="background: #d1fae5;">
+                        정상
+                    </span>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="p-3 bg-slate-50 rounded-lg">
+                        <p class="text-xs text-slate-500">DXY</p>
+                        <p class="text-lg font-bold">97.4</p>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-lg">
+                        <p class="text-xs text-slate-500">VIX</p>
+                        <p class="text-lg font-bold">18.0</p>
+                    </div>
+                </div>
+                <div class="p-3 bg-blue-50 rounded-lg border border-blue-100">
+                    <p class="text-xs text-blue-600 font-medium">MOVE Index</p>
+                    <p class="text-2xl font-bold text-blue-700">99.0</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card p-6">
+            <h3 class="text-lg font-bold text-slate-800 mb-4">⚠️ 리스크 분석</h3>
+            <div class="flex justify-center mb-4">
+                
+        <svg viewBox="0 0 200 120" style="width: 100%; max-width: 200px;">
+            <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#e5e7eb" stroke-width="20" stroke-linecap="round"/>
+            <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#f59e0b" stroke-width="20" stroke-linecap="round"
+                  stroke-dasharray="125.6 251.2"/>
+            <text x="100" y="90" text-anchor="middle" font-size="28" font-weight="bold" fill="#f59e0b">50</text>
+            <text x="100" y="115" text-anchor="middle" font-size="12" fill="#6b7280">리스크 점수</text>
+        </svg>
+        
+            </div>
+            <div class="space-y-3">
+                <div class="p-3 bg-slate-50 rounded-lg">
+                    <p class="text-xs text-slate-500">변동성 배수</p>
+                    <p class="text-lg font-bold">0.99x</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg">
+                    <p class="text-xs text-slate-500">내재 균형금리</p>
+                    <p class="text-lg font-bold">3.01%</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg">
+                    <p class="text-xs text-slate-500">추천 포지션</p>
+                    <p class="text-lg font-bold">10.1%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card p-6 mb-6">
+        <h3 class="text-lg font-bold text-slate-800 mb-4">🏭 섹터 분석 (Claude Sonnet 4)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h4 class="font-bold text-green-700 mb-3 flex items-center gap-2">
+                    <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                    추천 섹터 (Overweight)
+                </h4>
+                <div class="space-y-3">
+                <div class="p-4 bg-green-50 rounded-lg border border-green-100">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-bold text-green-800">Consumer Staples</span>
+                        <span class="text-sm font-bold text-green-600">80점</span>
+                    </div>
+                    <p class="text-sm text-green-700">Monthly +11.0%</p>
+                    <div class="mt-2"><span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded mr-1">#Momentum</span></div>
+                </div>
+                <div class="p-4 bg-green-50 rounded-lg border border-green-100">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-bold text-green-800">Energy</span>
+                        <span class="text-sm font-bold text-green-600">75점</span>
+                    </div>
+                    <p class="text-sm text-green-700">Monthly +10.2%</p>
+                    <div class="mt-2"><span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded mr-1">#Momentum</span></div>
+                </div>
+                <div class="p-4 bg-green-50 rounded-lg border border-green-100">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-bold text-green-800">Materials</span>
+                        <span class="text-sm font-bold text-green-600">70점</span>
+                    </div>
+                    <p class="text-sm text-green-700">Monthly +8.8%</p>
+                    <div class="mt-2"><span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded mr-1">#Momentum</span></div>
+                </div></div>
+            </div>
+            <div>
+                <h4 class="font-bold text-red-700 mb-3 flex items-center gap-2">
+                    <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+                    비추천 섹터 (Underweight)
+                </h4>
+                <div class="space-y-3">
+                <div class="p-4 bg-red-50 rounded-lg border border-red-100">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-bold text-red-800">Healthcare</span>
+                        <span class="text-sm font-bold text-red-600">30점</span>
+                    </div>
+                    <p class="text-sm text-red-700">Monthly -0.6%</p>
+                    <div class="mt-2"><span class="text-xs px-2 py-1 bg-red-100 text-red-700 rounded mr-1">⚠️ Weak</span></div>
+                </div>
+                <div class="p-4 bg-red-50 rounded-lg border border-red-100">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-bold text-red-800">Technology</span>
+                        <span class="text-sm font-bold text-red-600">35점</span>
+                    </div>
+                    <p class="text-sm text-red-700">Monthly -1.8%</p>
+                    <div class="mt-2"><span class="text-xs px-2 py-1 bg-red-100 text-red-700 rounded mr-1">⚠️ Weak</span></div>
+                </div>
+                <div class="p-4 bg-red-50 rounded-lg border border-red-100">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-bold text-red-800">Financial</span>
+                        <span class="text-sm font-bold text-red-600">40점</span>
+                    </div>
+                    <p class="text-sm text-red-700">Monthly -4.6%</p>
+                    <div class="mt-2"><span class="text-xs px-2 py-1 bg-red-100 text-red-700 rounded mr-1">⚠️ Weak</span></div>
+                </div></div>
+            </div>
+        </div>
+        <div class="mt-6 pt-6 border-t">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="p-4 bg-slate-50 rounded-lg">
+                    <p class="text-xs text-slate-500 mb-1">현재 시장 사이클</p>
+                    <p class="text-lg font-bold text-slate-800">MID_EXPANSION</p>
+                    <p class="text-xs text-slate-500 mt-1">Performance and macro based</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-lg">
+                    <p class="text-xs text-slate-500 mb-1">정책 영향</p>
+                    <p class="text-sm text-slate-700">Rate and dollar impact on sectors</p>
+                </div>
+                <div class="p-4 bg-blue-50 rounded-lg">
+                    <p class="text-xs text-blue-600 mb-1">💡 트레이딩 아이디어</p>
+                    <p class="text-sm font-medium text-blue-800">Consider Consumer Staples</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <p class="text-xs text-slate-500 mb-2">주요 투자 테마</p>
+                <div class="flex flex-wrap"><span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium mr-2">#Sector Momentum</span><span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium mr-2">#Macro</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="card p-6 mb-6">
+        <h3 class="text-lg font-bold text-slate-800 mb-4">📰 뉴스 감성 분석</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="text-center">
+                        <p class="text-4xl font-bold" style="color: #10b981;">
+                            POSITIVE
+                        </p>
+                        <p class="text-sm text-slate-500">전체 감성</p>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm text-slate-500 mb-1">신뢰도</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-blue-500" style="width: 75.0%;"></div>
+                        </div>
+                        <p class="text-right text-sm font-bold mt-1">75%</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-lg">
+                    <p class="text-xs text-slate-500 mb-1">시장 영향 분석</p>
+                    <p class="text-sm text-slate-700">기본 분석 결과입니다.</p>
+                </div>
+            </div>
+            <div>
+                <p class="text-xs text-slate-500 mb-2">주요 뉴스</p>
+                <div class="space-y-2">
+                <div class="p-3 bg-slate-50 rounded-lg">
+                    <p class="text-sm font-medium text-slate-800">미 연준, 금리 동결 결정... 시장 안도...</p>
+                    <p class="text-xs text-slate-400 mt-1">샘플뉴스 | 2026-02-04</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-lg">
+                    <p class="text-sm font-medium text-slate-800">코스피, 외국인 매수세에 상승 마감...</p>
+                    <p class="text-xs text-slate-400 mt-1">샘플뉴스 | 2026-02-04</p>
+                </div></div>
+            </div>
+        </div>
+    </div>
+    <div class="card p-6 bg-slate-100">
+        <p class="text-xs text-slate-500 text-center">
+            ⚠️ 본 리포트는 AI 기반 자동 분석 결과이며, 투자 권유가 아닙니다. 
+            모든 투자 결정은 본인의 판단과 책임 하에 이루어져야 합니다.
+            <br>Generated by Investment Analysis System | Powered by Claude Sonnet 4 & 정하림 MOVE 모형
+        </p>
+    </div>
+</div>
+
+<script>
+    const ctx = document.getElementById('allocationChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['주식', '채권', '현금'],
+            datasets: [{
+                data: [70, 20, 10],
+                backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'],
+                borderWidth: 0,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: { legend: { display: false } },
+            cutout: '60%'
+        }
+    });
+</script>
+</body>
+</html>

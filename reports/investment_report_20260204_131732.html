@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Strategy Report | 2026.02.04</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Serif KR', Georgia, serif; background: #fff; color: #222; line-height: 1.7; font-size: 15px; }
+.container { max-width: 900px; margin: 0 auto; padding: 40px 50px; }
+.masthead { text-align: center; border-bottom: 3px double #222; padding-bottom: 20px; margin-bottom: 30px; }
+.masthead-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.masthead-date { font-size: 13px; color: #666; margin-top: 8px; letter-spacing: 1px; }
+.headline { font-family: 'Playfair Display', 'Noto Serif KR', serif; font-size: 36px; font-weight: 700; line-height: 1.2; margin: 30px 0 15px; text-align: center; }
+.subheadline { font-size: 18px; color: #444; text-align: center; margin-bottom: 30px; font-style: italic; }
+.byline { text-align: center; font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #ddd; }
+.section { margin-bottom: 35px; }
+.section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #222; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid #222; }
+.lead { font-size: 18px; line-height: 1.8; margin-bottom: 25px; }
+.body-text { margin-bottom: 15px; text-align: justify; }
+.two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.three-column { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; }
+.data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+.data-table th { text-align: left; padding: 10px 12px; border-bottom: 2px solid #222; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+.data-table td { padding: 10px 12px; border-bottom: 1px solid #e0e0e0; }
+.data-table tr:hover { background: #fafafa; }
+.number { font-family: 'Roboto Mono', monospace; }
+.positive { color: #1a5f2a; }
+.negative { color: #b71c1c; }
+.highlight-box { background: #f8f8f8; padding: 25px; margin: 25px 0; border-left: 3px solid #222; }
+.highlight-title { font-weight: 700; margin-bottom: 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+.quote { font-size: 20px; font-style: italic; color: #333; padding: 20px 30px; margin: 25px 0; border-left: 3px solid #222; background: #fafafa; }
+.stat-box { text-align: center; padding: 20px; }
+.stat-value { font-size: 32px; font-weight: 700; font-family: 'Playfair Display', serif; }
+.stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-top: 5px; }
+.sector-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0; }
+.sector-item { padding: 12px; border: 1px solid #e0e0e0; text-align: center; }
+.sector-name { font-size: 12px; font-weight: 600; margin-bottom: 5px; }
+.sector-perf { font-size: 14px; font-weight: 700; }
+.news-item { padding: 15px 0; border-bottom: 1px solid #eee; }
+.news-title { font-weight: 600; margin-bottom: 5px; }
+.news-meta { font-size: 12px; color: #888; }
+.news-excerpt { font-size: 14px; color: #555; margin-top: 8px; }
+.allocation-bar { display: flex; height: 8px; margin: 15px 0; background: #eee; }
+.allocation-segment { height: 100%; }
+.footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 11px; color: #888; }
+.disclaimer { font-size: 11px; color: #888; line-height: 1.6; margin-top: 20px; padding: 15px; background: #fafafa; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="masthead">
+    <div class="masthead-title">Investment Strategy Report</div>
+    <div class="masthead-date">Wednesday, February 04, 2026 | Seoul</div>
+</div>
+
+<div class="headline">긍정적 시장 환경, 위험자산 비중 확대 권고</div>
+<div class="subheadline">종합점수 60점 · BUY · EARLY EXPANSION</div>
+<div class="byline">AI Investment Research · Automated Analysis System</div>
+
+<div class="section">
+    <div class="section-title">Executive Summary</div>
+    <p class="lead">균형 포트폴리오 유지, 선별적 접근 한국 증시가 전반적으로 강한 월간 상승률을 보이며, 자동차(+45.5%), 통신(+28.2%) 등 경기민감업종이 급등하고 있어 경기 회복 초기 단계로 판단됩니다. VIX 18.0의 안정적 수준과 함께 리스크온 모멘텀이 지속되고 있습니다.</p>
+    <p class="body-text">통신주를 코어 포지션으로 하되, 유통업은 중국 관광객 증가 수혜 종목 위주로 선별 투자를 권장합니다. 자동차업종은 단기 조정 후 재진입 기회를 노려볼 만하며, 2차전지는 중국 경기 회복 본격화 시점까지 관망이 바람직합니다.</p>
+    <p class="body-text">한국 기준금리 인하 기대감이 높아지면서 금융업의 대손충당금 부담 완화와 부동산 관련 업종에 긍정적 영향을 미치고 있습니다. 정부의 AI 반도체 육성 정책과 K-뉴딜 2.0 정책도 관련 업종의 중장기 성장을 뒷받침하고 있습니다.</p>
+</div>
+
+<div class="section">
+    <div class="section-title">Market Overview</div>
+    <div class="three-column">
+        <div class="stat-box">
+            <div class="stat-value">5,323</div>
+            <div class="stat-label">KOSPI <span class="positive">+0.67%</span></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">1,142</div>
+            <div class="stat-label">KOSDAQ <span class="negative">-0.17%</span></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">1,450</div>
+            <div class="stat-label">USD/KRW <span class="negative">-0.18%</span></div>
+        </div>
+    </div>
+    <table class="data-table">
+        <tr><th>Indicator</th><th>Value</th><th>Change</th><th>Signal</th></tr>
+        <tr><td>VIX (변동성지수)</td><td class="number">18.00</td><td><span class="positive">+10.16%</span></td><td>Neutral</td></tr>
+        <tr><td>US 10Y Treasury</td><td class="number">4.27%</td><td><span class="negative">-0.02%</span></td><td>안정</td></tr>
+        <tr><td>Yield Spread (10Y-2Y)</td><td class="number">0.68%</td><td>-</td><td>정상</td></tr>
+    </table>
+</div>
+
+<div class="section">
+    <div class="section-title">Sector Performance</div>
+    <p class="body-text">아래는 한국 주요 업종의 월간 수익률입니다. 색상이 진할수록 강한 상승/하락을 나타냅니다.</p>
+    <div class="sector-grid">
+
+        <div class="sector-item">
+            <div class="sector-name">자동차</div>
+            <div class="sector-perf positive">+45.5%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">통신</div>
+            <div class="sector-perf positive">+28.2%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">유통</div>
+            <div class="sector-perf positive">+24.4%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">반도체</div>
+            <div class="sector-perf positive">+24.4%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">2차전지</div>
+            <div class="sector-perf positive">+24.2%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">철강</div>
+            <div class="sector-perf positive">+19.2%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">금융</div>
+            <div class="sector-perf positive">+13.5%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">조선</div>
+            <div class="sector-perf positive">+11.8%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">화학</div>
+            <div class="sector-perf positive">+7.0%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">바이오</div>
+            <div class="sector-perf positive">+2.7%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">게임</div>
+            <div class="sector-perf positive">+2.7%</div>
+        </div>
+        <div class="sector-item">
+            <div class="sector-name">엔터</div>
+            <div class="sector-perf negative">-0.0%</div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Sector Analysis</div>
+
+    <p class="body-text"><strong>Overweight 업종</strong></p>
+    <table class="data-table">
+        <tr><th>업종</th><th>점수</th><th>투자 포인트</th></tr>
+
+        <tr>
+            <td><strong>통신</strong></td>
+            <td class="number">90</td>
+            <td>주간 +6.5%, 월간 +28.2%로 강력한 모멘텀을 유지하며, AI 인프라 투자 확대와 5G/6G 전환 수혜가 지속되고 있습니다. 안정적 배당수익률과 함께 성장성도 확보한 디펜시... <em>(AI 데이터센터 투자 확대, 6G 기술 선도권 확보)</em></td>
+        </tr>
+        <tr>
+            <td><strong>유통</strong></td>
+            <td class="number">88</td>
+            <td>주간 +5.4%, 월간 +24.4%로 내수 회복 기대감이 반영되고 있으며, 중국 관광객 증가와 소비심리 개선이 실적 개선으로 이어질 전망입니다. 밸류에이션 부담도 상대적으로 낮은 ... <em>(중국 관광객 증가, 내수 소비 회복)</em></td>
+        </tr>
+        <tr>
+            <td><strong>금융</strong></td>
+            <td class="number">85</td>
+            <td>주간 +5.0% 상승하며 미국 금융업(-4.6%)과 디커플링되고 있습니다. 한국 기준금리 인하 사이클 진입으로 대손충당금 부담 완화와 함께 밸류에이션 매력도가 높아지고 있습니다.... <em>(기준금리 인하 사이클, 대손충당금 부담 완화)</em></td>
+        </tr></table>
+    <p class="body-text" style="margin-top: 25px;"><strong>Underweight 업종</strong></p>
+    <table class="data-table">
+        <tr><th>업종</th><th>점수</th><th>리스크 요인</th></tr>
+
+        <tr>
+            <td><strong>게임</strong></td>
+            <td class="number">25</td>
+            <td>주간 -6.3%로 급락하며 월간 수익률도 +2.7%에 그쳤습니다. 중국 게임 규제 리스크와 신작 출시 지연, 모바일 게임 시장 포화 우려가 지속... <em>(중국 규제 리스크, 신작 출시 지연)</em></td>
+        </tr>
+        <tr>
+            <td><strong>엔터</strong></td>
+            <td class="number">30</td>
+            <td>월간 수익률 0.0%로 부진하며, K-컨텐츠 열풍 둔화와 해외 진출 성과 불확실성이 부담으로 작용하고 있습니다.... <em>(K-컨텐츠 열풍 둔화, 수익성 악화 우려)</em></td>
+        </tr></table>
+    <div class="highlight-box">
+        <div class="highlight-title">Foreign Flow Outlook</div>
+        <p>한국 증시의 상대적 아웃퍼폼과 원화 안정세로 외국인 순매수 흐름이 지속될 가능성이 높습니다. 특히 AI 관련 반도체와 통신 인프라 업종에 대한 외국인 관심이 증가할 전망입니다.</p>
+    </div>
+
+    <p class="body-text"><strong>Key Themes:</strong> AI 인프라 투자 · 내수 회복 · 중국 리오프닝 수혜</p>
+</div>
+<div class="section">
+    <div class="section-title">Risk Assessment</div>
+    <div class="two-column">
+        <div>
+            <table class="data-table">
+                <tr><td>Risk Level</td><td><strong>MEDIUM</strong></td></tr>
+                <tr><td>Risk Score</td><td class="number">50/100</td></tr>
+                <tr><td>Volatility Multiplier</td><td class="number">0.99x</td></tr>
+            </table>
+        </div>
+        <div>
+            <p class="body-text">변동성이 보통 수준입니다. 기존 포지션을 유지하되 주요 지표의 변화를 지속적으로 모니터링하십시오. 급격한 포지션 변경보다는 점진적인 조정이 권장됩니다.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">News & Sentiment Analysis</div>
+    <div class="two-column">
+        <div>
+            <p class="body-text"><strong>Overall Sentiment:</strong> NEUTRAL (신뢰도 50%)</p>
+            <p class="body-text">키워드 기반 기본 분석입니다.</p>
+            <p class="body-text"></p>
+
+        </div>
+        <div>
+<p class="body-text" style="color: #888;">뉴스 데이터를 수집하지 못했습니다. 빅카인즈 API 연결을 확인하십시오.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Investment Recommendation</div>
+    
+    <div class="quote">
+        "위험자산 비중 확대" — 종합점수 60점 기준
+    </div>
+    
+    <p class="body-text"><strong>Asset Allocation</strong></p>
+    <div class="allocation-bar">
+        <div class="allocation-segment" style="width: 60%; background: #222;"></div>
+        <div class="allocation-segment" style="width: 30%; background: #666;"></div>
+        <div class="allocation-segment" style="width: 10%; background: #bbb;"></div>
+    </div>
+    <table class="data-table">
+        <tr><th>Asset Class</th><th>Weight</th><th>Strategy</th></tr>
+        <tr><td>주식 (Equity)</td><td class="number">60%</td><td>공격적 비중</td></tr>
+        <tr><td>채권 (Fixed Income)</td><td class="number">30%</td><td>균형 배분</td></tr>
+        <tr><td>현금 (Cash)</td><td class="number">10%</td><td>기회 대기</td></tr>
+    </table>
+    
+    <div class="highlight-box">
+        <div class="highlight-title">Action Items</div>
+        <p><strong>Primary Sector:</strong> 통신</p>
+        <p><strong>Position Size:</strong> 10.1%</p>
+        <p><strong>Rebalancing:</strong> 월간 리밸런싱</p>
+    </div>
+</div>
+
+<div class="footer">
+    <p><strong>AI Investment Research</strong> · Automated Analysis System</p>
+    <p>Generated: 2026-02-04 13:17:32 KST</p>
+    <p>Data Sources: yfinance, BigKinds API, Claude Sonnet 4</p>
+</div>
+
+<div class="disclaimer">
+    <strong>Disclaimer:</strong> 본 리포트는 AI 시스템에 의해 자동 생성된 참고 자료이며, 투자 권유가 아닙니다. 
+    모든 투자 결정은 투자자 본인의 판단과 책임 하에 이루어져야 합니다. 
+    과거 수익률이 미래 수익을 보장하지 않으며, 투자 원금 손실이 발생할 수 있습니다.
+    본 자료의 무단 복제 및 배포를 금합니다.
+</div>
+
+</div>
+</body>
+</html>

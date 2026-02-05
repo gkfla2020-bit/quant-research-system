@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Investment Report</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Serif KR', Georgia, serif; background: #f5f5f5; color: #222; line-height: 1.7; font-size: 14px; }
+.container { max-width: 1000px; margin: 0 auto; padding: 40px 50px; background: #fff; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+.masthead { text-align: center; border-bottom: 3px double #222; padding-bottom: 15px; margin-bottom: 25px; }
+.masthead-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+.masthead-date { font-size: 12px; color: #666; margin-top: 6px; letter-spacing: 1px; }
+.headline { font-family: 'Playfair Display', 'Noto Serif KR', serif; font-size: 32px; font-weight: 700; line-height: 1.2; margin: 25px 0 12px; text-align: center; }
+.subheadline { font-size: 16px; color: #444; text-align: center; margin-bottom: 25px; font-style: italic; }
+.byline { text-align: center; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #ddd; }
+.section { margin-bottom: 35px; width: 100%; overflow: hidden; }
+.section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #222; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid #222; }
+.lead { font-size: 16px; line-height: 1.8; margin-bottom: 20px; }
+.body-text { margin-bottom: 12px; text-align: justify; }
+.two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.three-column { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.four-column { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.five-column { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
+.data-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; }
+.data-table th { text-align: left; padding: 8px 10px; border-bottom: 2px solid #222; font-weight: 600; text-transform: uppercase; font-size: 10px; letter-spacing: 1px; }
+.data-table td { padding: 8px 10px; border-bottom: 1px solid #e0e0e0; }
+.data-table tr:hover { background: #fafafa; }
+.number { font-family: 'Roboto Mono', monospace; font-size: 13px; }
+.positive { color: #1a5f2a; }
+.negative { color: #b71c1c; }
+.highlight-box { background: #f8f8f8; padding: 20px; margin: 20px 0; border-left: 3px solid #222; }
+.highlight-title { font-weight: 700; margin-bottom: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+.stat-box { text-align: center; padding: 15px 10px; border: 1px solid #e0e0e0; background: #fff; }
+.stat-value { font-size: 18px; font-weight: 700; font-family: 'Playfair Display', serif; }
+.stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-top: 4px; }
+.stat-change { font-size: 11px; margin-top: 3px; }
+.macro-card { background: #fafafa; padding: 18px; border-left: 3px solid #222; margin-bottom: 15px; }
+.macro-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 8px; }
+.macro-value { font-size: 24px; font-weight: 700; font-family: 'Playfair Display', serif; }
+.macro-detail { font-size: 12px; color: #666; margin-top: 5px; }
+.calendar-item { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 13px; }
+.calendar-date { font-weight: 600; color: #222; }
+.importance-high { color: #b71c1c; font-weight: 600; }
+.sector-item { padding: 10px; border: 1px solid #e0e0e0; text-align: center; }
+.sector-name { font-size: 11px; font-weight: 600; margin-bottom: 4px; }
+.sector-perf { font-size: 13px; font-weight: 700; }
+.allocation-bar { display: flex; height: 6px; margin: 12px 0; background: #eee; }
+.allocation-segment { height: 100%; }
+.footer { margin-top: 35px; padding-top: 15px; border-top: 1px solid #ddd; font-size: 10px; color: #888; }
+.disclaimer { font-size: 10px; color: #888; line-height: 1.5; margin-top: 15px; padding: 12px; background: #fafafa; }
+.mini-table { font-size: 12px; }
+.mini-table td { padding: 5px 8px; }
+.cycle-chart { position: relative; width: 100%; height: 280px; margin: 20px 0; }
+.cycle-circle { position: relative; width: 240px; height: 240px; margin: 0 auto; border: 2px solid #ddd; border-radius: 50%; }
+.cycle-phase { position: absolute; width: 80px; text-align: center; font-size: 11px; }
+.cycle-phase-name { font-weight: 700; margin-bottom: 3px; }
+.cycle-phase-desc { font-size: 10px; color: #666; }
+.cycle-indicator { position: absolute; width: 12px; height: 12px; background: #222; border-radius: 50%; transform: translate(-50%, -50%); }
+.cycle-arrow { position: absolute; font-size: 20px; color: #999; }
+.signal-box { display: inline-block; padding: 3px 8px; font-size: 10px; font-weight: 600; border-radius: 2px; text-transform: uppercase; }
+.signal-bullish { background: #e8f5e9; color: #1a5f2a; }
+.signal-bearish { background: #ffebee; color: #b71c1c; }
+.signal-neutral { background: #f5f5f5; color: #666; }
+.indicator-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.indicator-item { padding: 12px; background: #fafafa; border-left: 3px solid #ddd; }
+.indicator-item.bullish { border-left-color: #1a5f2a; }
+.indicator-item.bearish { border-left-color: #b71c1c; }
+.indicator-name { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 5px; }
+.indicator-value { font-size: 18px; font-weight: 700; font-family: 'Roboto Mono', monospace; }
+.indicator-signal { font-size: 11px; margin-top: 5px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="masthead">
+    <div class="masthead-title">Weekly Investment Report</div>
+    <div class="masthead-date">Week of February 02 - 06, 2026 | Seoul</div>
+</div>
+<div class="headline">Risk-On: Aggressive Buy on Risk Assets Recommended</div>
+<div class="subheadline">Score 80/100 · STRONG_BUY</div>
+<div class="byline">AI Investment Research · Macro + QuantLib Analysis</div>
+
+<div class="section">
+    <div class="section-title">Executive Summary</div>
+    <p class="lead">Increase allocation to risk assets with a growth-oriented portfolio strategy.</p>
+    <p class="body-text"><strong>Market Cycle:</strong> MID EXPANSION. Most Korean sectors recorded double-digit monthly returns, showing broad-based gains. However, weekly returns show some momentum stocks correcting, indicating the differentiation typical of mid-cycle expansion.</p>
+    <p class="body-text">Consider the short-term correction in the Auto sector as a buying opportunity, while diversifying the portfolio into stable growth sectors like Telecom and Retail. Reduce exposure to Gaming and Entertainment sectors due to additional downside risks.</p>
+    <p class="body-text">The weak KRW at 1,450 level benefits large exporters, particularly enhancing price competitiveness in Auto and Semiconductor sectors. VIX at 18.0 supports a risk-on environment, and preference for growth-oriented portfolios is expected to continue.</p>
+</div>
+
+<div class="section">
+    <div class="section-title">Macro Dashboard</div>
+    <div class="five-column">
+        <div class="stat-box">
+            <div class="stat-value">5,328</div>
+            <div class="stat-label">KOSPI</div>
+            <div class="stat-change"><span class="positive">+2.05%</span></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">6,918</div>
+            <div class="stat-label">S&P 500</div>
+            <div class="stat-change"><span class="negative">-0.86%</span></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">3.00%</div>
+            <div class="stat-label">BOK Base Rate</div>
+            <div class="stat-change">0.00%p</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">3.05%</div>
+            <div class="stat-label">KTB 10Y</div>
+            <div class="stat-change"><span class="negative">-0.05%p</span></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">-1.22%p</div>
+            <div class="stat-label">KR-US Spread</div>
+            <div class="stat-change"><span class="negative">Inverted</span></div>
+        </div>
+    </div>
+    <div class="five-column" style="margin-top: 12px;">
+        <div class="stat-box">
+            <div class="stat-value">4.27%</div>
+            <div class="stat-label">US 10Y</div>
+            <div class="stat-change"><span class="negative">-0.02%</span></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">1,450</div>
+            <div class="stat-label">USD/KRW</div>
+            <div class="stat-change"><span class="positive">+1.46%</span></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">97.4</div>
+            <div class="stat-label">DXY</div>
+            <div class="stat-change"><span class="positive">+0.94%</span></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">18.0</div>
+            <div class="stat-label">VIX</div>
+            <div class="stat-change"><span class="positive">+10.09%</span></div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-value">$5,090</div>
+            <div class="stat-label">Gold</div>
+            <div class="stat-change"><span class="negative">-4.00%</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Macro Indicators Analysis</div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+        <div>
+            <div class="macro-card">
+                <div class="macro-title">Interest Rates (Korea)</div>
+                <table class="mini-table" style="width: 100%;">
+                    <tr><td>BOK Base Rate</td><td class="number">3.00%</td><td>0.00%p</td></tr>
+                    <tr><td>KTB 3Y</td><td class="number">2.85%</td><td><span class="negative">-0.05%p</span></td></tr>
+                    <tr><td>KTB 10Y</td><td class="number">3.05%</td><td><span class="negative">-0.05%p</span></td></tr>
+                    <tr><td>10Y-3Y Spread</td><td class="number">0.20%</td><td><span class="positive">Normal</span></td></tr>
+                    <tr><td><strong>KR-US Spread (10Y)</strong></td><td class="number"><strong>-1.22%p</strong></td><td><span class="negative">Inverted</span></td></tr>
+                </table>
+                <div class="macro-detail" style="margin-top: 10px;">
+                    <span class="signal-box signal-bearish">BEARISH</span> Rate inversion → Foreign outflow pressure
+                </div>
+            </div>
+            
+            <div class="macro-card">
+                <div class="macro-title">Interest Rates (US Treasury)</div>
+                <table class="mini-table" style="width: 100%;">
+                    <tr><td>2Y Yield</td><td class="number">3.59%</td><td><span class="positive">+0.34%</span></td></tr>
+                    <tr><td>10Y Yield</td><td class="number">4.27%</td><td><span class="negative">-0.02%</span></td></tr>
+                    <tr><td>30Y Yield</td><td class="number">4.91%</td><td><span class="negative">-0.06%</span></td></tr>
+                    <tr><td>10Y-2Y Spread</td><td class="number">0.68%</td><td><span class="positive">Normal</span></td></tr>
+                </table>
+                <div class="macro-detail" style="margin-top: 10px;">
+                    <span class="signal-box signal-neutral">NEUTRAL</span> Neutral rates
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="macro-card">
+                <div class="macro-title">Currency & Dollar Index</div>
+                <table class="mini-table" style="width: 100%;">
+                    <tr><td>DXY (Dollar Index)</td><td class="number">97.35</td><td><span class="positive">+0.94%</span></td></tr>
+                    <tr><td>USD/KRW</td><td class="number">1,450</td><td><span class="positive">+1.46%</span></td></tr>
+                    <tr><td>EUR/USD</td><td class="number">1.1833</td><td><span class="negative">-1.21%</span></td></tr>
+                    <tr><td>USD/JPY</td><td class="number">156.31</td><td><span class="positive">+2.10%</span></td></tr>
+                </table>
+                <div class="macro-detail" style="margin-top: 10px;">
+                    <span class="signal-box signal-bullish">BULLISH</span> Weak USD → EM capital inflow<br>
+                    <span class="signal-box signal-neutral">MIXED</span> Weak KRW → Export boost, foreign outflow
+                </div>
+            </div>
+            
+            <div class="macro-card">
+                <div class="macro-title">Volatility & Risk Sentiment</div>
+                <table class="mini-table" style="width: 100%;">
+                    <tr><td>VIX (Fear Index)</td><td class="number">18.00</td><td><span class="positive">+10.09%</span></td></tr>
+                    <tr><td>MOVE (Bond Vol)</td><td class="number">99.0</td><td>-</td></tr>
+                    <tr><td>1M Range (KOSPI)</td><td class="number" colspan="2">4,382 - 5,362</td></tr>
+                </table>
+                <div class="macro-detail" style="margin-top: 10px;">
+                    <span class="signal-box signal-neutral">NEUTRAL</span> Moderate volatility
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 15px;">
+        <div class="macro-card">
+            <div class="macro-title">Commodities & Crypto</div>
+            <table class="mini-table" style="width: 100%;">
+                <tr><td>Gold</td><td class="number">$5,089.50</td><td><span class="negative">-4.00%</span></td></tr>
+                <tr><td>WTI Crude</td><td class="number">$63.83</td><td><span class="positive">+0.98%</span></td></tr>
+                <tr><td>Copper</td><td class="number">$6.04</td><td><span class="positive">+2.45%</span></td></tr>
+                <tr><td>Bitcoin</td><td class="number">$76,534</td><td><span class="negative">-9.03%</span></td></tr>
+            </table>
+            <div class="macro-detail" style="margin-top: 10px;">
+                <span class="signal-box signal-bullish">BULLISH</span> Gold: Risk-on preference<br>
+                <span class="signal-box signal-neutral">NEUTRAL</span> Oil: Stable prices
+            </div>
+        </div>
+    </div>
+    
+    <div class="highlight-box" style="margin-top: 20px;">
+        <div class="highlight-title">Macro Signal Summary</div>
+        <div class="indicator-grid">
+            <div class="indicator-item bearish">
+                <div class="indicator-name">KR-US Spread</div>
+                <div class="indicator-value">-1.22%p</div>
+                <div class="indicator-signal">Rate inversion → Foreign outflow pressure</div>
+            </div>
+            <div class="indicator-item ">
+                <div class="indicator-name">US 10Y</div>
+                <div class="indicator-value">4.27%</div>
+                <div class="indicator-signal">Neutral rates</div>
+            </div>
+            <div class="indicator-item bullish">
+                <div class="indicator-name">Dollar (DXY)</div>
+                <div class="indicator-value">97.4</div>
+                <div class="indicator-signal">Weak USD → EM capital inflow</div>
+            </div>
+            <div class="indicator-item ">
+                <div class="indicator-name">USD/KRW</div>
+                <div class="indicator-value">1,450</div>
+                <div class="indicator-signal">Weak KRW → Export boost, foreign outflow</div>
+            </div>
+            <div class="indicator-item ">
+                <div class="indicator-name">Volatility (VIX)</div>
+                <div class="indicator-value">18.0</div>
+                <div class="indicator-signal">Moderate volatility</div>
+            </div>
+            <div class="indicator-item bullish">
+                <div class="indicator-name">Gold</div>
+                <div class="indicator-value">$5,090</div>
+                <div class="indicator-signal">Risk-on preference</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Business Cycle Analysis</div>
+    
+    <div class="highlight-box" style="background: #fff; border: 1px solid #e0e0e0; border-left: 3px solid #222;">
+        <div style="display: flex; gap: 30px; align-items: flex-start;">
+            <div style="flex: 0 0 220px;">
+                <div style="position: relative; width: 220px; height: 220px;">
+                    <svg width="220" height="220" style="position: absolute; top: 0; left: 0;">
+                        <circle cx="110" cy="110" r="85" fill="none" stroke="#ddd" stroke-width="2"/>
+                        <circle cx="110" cy="110" r="50" fill="none" stroke="#eee" stroke-width="1"/>
+                        <line x1="110" y1="25" x2="110" y2="195" stroke="#eee" stroke-width="1"/>
+                        <line x1="25" y1="110" x2="195" y2="110" stroke="#eee" stroke-width="1"/>
+                        <circle cx="170" cy="50" r="6" fill="#222"/>
+                        <circle cx="170" cy="50" r="10" fill="none" stroke="#222" stroke-width="2"/>
+                    </svg>
+                    <div style="position: absolute; top: 2px; left: 50%; transform: translateX(-50%); font-size: 9px; font-weight: 600; text-align: center;">EARLY<br>EXPANSION</div>
+                    <div style="position: absolute; top: 50%; right: -5px; transform: translateY(-50%); font-size: 9px; font-weight: 600; text-align: center;">LATE<br>EXPANSION</div>
+                    <div style="position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); font-size: 9px; font-weight: 600; text-align: center;">CONTRACTION</div>
+                    <div style="position: absolute; top: 50%; left: -5px; transform: translateY(-50%); font-size: 9px; font-weight: 600; text-align: center;">RECOVERY</div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                        <div style="font-size: 10px; font-weight: 700; color: #222;">CURRENT</div>
+                        <div style="font-size: 12px; font-weight: 700; color: #222; margin-top: 2px;">MID<br>EXPANSION</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="flex: 1;">
+                <table class="mini-table" style="width: 100%;">
+                    <tr><td style="font-weight: 600;">Current Position</td><td><strong>MID EXPANSION</strong></td></tr>
+                    <tr><td style="font-weight: 600;">Rotation Signal</td><td><span class="signal-box signal-bullish">RISK_ON</span></td></tr>
+                    <tr><td style="font-weight: 600;">Recommended Sectors</td><td>Industrials, Materials, Energy</td></tr>
+                </table>
+                <div style="margin-top: 15px; padding: 12px; background: #fafafa; border-left: 2px solid #ddd;">
+                    <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 8px;">Cycle Characteristics</div>
+                    <div style="font-size: 12px; line-height: 1.6;">• GDP growth accelerating • Corporate earnings improving • Early rate hike cycle • Equities > Bonds</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Economic Calendar</div>
+    <div class="three-column">
+        <div>
+            <p class="body-text"><strong>US Events</strong></p>
+            <div class="calendar-item"><span class="calendar-date">02/03</span> <span class="calendar-event importance-high">ISM Manufacturing PMI</span></div><div class="calendar-item"><span class="calendar-date">02/04</span> <span class="calendar-event ">ADP Employment Report</span></div><div class="calendar-item"><span class="calendar-date">02/05</span> <span class="calendar-event importance-high">ISM Services PMI</span></div><div class="calendar-item"><span class="calendar-date">02/06</span> <span class="calendar-event importance-high">Non-Farm Payrolls (NFP)</span></div><div class="calendar-item"><span class="calendar-date">02/06</span> <span class="calendar-event importance-high">Unemployment Rate</span></div>
+        </div>
+        <div>
+            <p class="body-text"><strong>Korea Events</strong></p>
+            <div class="calendar-item"><span class="calendar-date">02/02</span> <span class="calendar-event importance-high">Trade Balance</span></div><div class="calendar-item"><span class="calendar-date">02/04</span> <span class="calendar-event importance-high">Consumer Price Index (CPI)</span></div><div class="calendar-item"><span class="calendar-date">02/05</span> <span class="calendar-event importance-high">BOK Monetary Policy Meeting</span></div>
+        </div>
+        <div>
+            <p class="body-text"><strong>Earnings</strong></p>
+            <div class="calendar-item"><span class="calendar-date">02/03</span> Samsung Electronics (KR)</div><div class="calendar-item"><span class="calendar-date">02/04</span> Apple (US)</div><div class="calendar-item"><span class="calendar-date">02/04</span> Amazon (US)</div><div class="calendar-item"><span class="calendar-date">02/05</span> SK Hynix (KR)</div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Sector Analysis</div>
+    <p class="body-text"><strong>Monthly Performance</strong></p>
+    <div class="four-column" style="margin-bottom: 20px;">
+        
+            <div class="sector-item">
+                <div class="sector-name">Auto</div>
+                <div class="sector-perf positive">+45.8%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Telecom</div>
+                <div class="sector-perf positive">+28.0%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Retail</div>
+                <div class="sector-perf positive">+24.6%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Battery</div>
+                <div class="sector-perf positive">+24.4%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Semiconductor</div>
+                <div class="sector-perf positive">+24.3%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Steel</div>
+                <div class="sector-perf positive">+19.5%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Financials</div>
+                <div class="sector-perf positive">+13.9%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Shipbuilding</div>
+                <div class="sector-perf positive">+12.2%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Chemicals</div>
+                <div class="sector-perf positive">+7.4%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Gaming</div>
+                <div class="sector-perf positive">+2.5%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Biotech</div>
+                <div class="sector-perf positive">+2.5%</div>
+            </div>
+            <div class="sector-item">
+                <div class="sector-name">Entertainment</div>
+                <div class="sector-perf negative">-0.1%</div>
+            </div>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+        <div>
+            <p class="body-text"><strong>Overweight</strong></p>
+            <table class="data-table">
+                <tr><th>Sector</th><th>Score</th><th>Rationale</th></tr>
+                
+            <tr>
+                <td><strong>Auto</strong></td>
+                <td class="number">90</td>
+                <td style="font-size: 12px;">Recorded an overwhelming +45.8% monthly gain, while the -2.3% weekly correction presents a buying opportunity. Global EV transition acceleration and Chi...</td>
+            </tr>
+            <tr>
+                <td><strong>Telecom</strong></td>
+                <td class="number">88</td>
+                <td style="font-size: 12px;">Showing stable growth with +6.3% weekly and +28.0% monthly gains. 5G investment cycle recovery, AI infrastructure demand increase, and...</td>
+            </tr>
+            <tr>
+                <td><strong>Retail</strong></td>
+                <td class="number">85</td>
+                <td style="font-size: 12px;">Signaling domestic consumption recovery with +5.5% weekly and +24.6% monthly gains. Consumer sentiment improvement, e-commerce growth, and offline store...</td>
+            </tr>
+            </table>
+        </div>
+        <div>
+            <p class="body-text"><strong>Underweight</strong></p>
+            <table class="data-table">
+                <tr><th>Sector</th><th>Score</th><th>Risk</th></tr>
+                
+            <tr>
+                <td><strong>Gaming</strong></td>
+                <td class="number">25</td>
+                <td style="font-size: 12px;">Recorded the largest weekly decline at -6.4%, with only +2.5% monthly return. China...</td>
+            </tr>
+            <tr>
+                <td><strong>Entertainment</strong></td>
+                <td class="number">30</td>
+                <td style="font-size: 12px;">The only sector with negative monthly return at -5.5% weekly and -0.1% monthly. K-content boom...</td>
+            </tr>
+            </table>
+        </div>
+    </div>
+    
+    <p class="body-text" style="margin-top: 15px;"><strong>Key Themes:</strong> EV Ecosystem · AI Infrastructure · Domestic Consumption Recovery</p>
+</div>
+
+<div class="section">
+    <div class="section-title">Quantitative Analysis (QuantLib)</div>
+    
+    <div class="three-column">
+        <div class="macro-card">
+            <div class="macro-title">Vasicek Rate Model</div>
+            <table class="mini-table" style="width: 100%;">
+                <tr><td>Current (r₀)</td><td class="number">4.274%</td></tr>
+                <tr><td>Long-term (θ)</td><td class="number">3.5%</td></tr>
+                <tr><td>Mean Rev. (κ)</td><td class="number">0.25</td></tr>
+                <tr><td>Half-life</td><td class="number">2.77Y</td></tr>
+            </table>
+        </div>
+        
+        <div class="macro-card">
+            <div class="macro-title">Yield Curve</div>
+            <table class="mini-table" style="width: 100%;">
+                <tr><td>Shape</td><td><strong>NORMAL</strong></td></tr>
+                <tr><td>Slope</td><td class="number">41 bps</td></tr>
+                <tr><td>Short Rate</td><td class="number">4.5%</td></tr>
+                <tr><td>Long Rate</td><td class="number">4.906%</td></tr>
+            </table>
+            <div class="macro-detail" style="margin-top: 8px; font-size: 11px;">Normal economic environment</div>
+        </div>
+        
+        <div class="macro-card">
+            <div class="macro-title">Volatility Surface</div>
+            <table class="mini-table" style="width: 100%;">
+                <tr><td>ATM Vol</td><td class="number">18.0%</td></tr>
+                <tr><td>Skew</td><td class="number">3.6%</td></tr>
+                <tr><td>Risk Rev.</td><td class="number">-3.6%</td></tr>
+                <tr><td>Term</td><td>BACKWARDATION</td></tr>
+            </table>
+            <div class="macro-detail" style="margin-top: 8px; font-size: 11px;">Strong downside risk premium - Market anxiety signal</div>
+        </div>
+    </div>
+    
+    <div class="highlight-box" style="margin-top: 15px;">
+        <div class="highlight-title">Rate Path Forecast (Vasicek)</div>
+        <p class="body-text" style="font-size: 12px;">
+            0.25Y: 4.227% → 0.5Y: 4.183% → 1.0Y: 4.103% → 2.0Y: 3.969% → 3.0Y: 3.866%
+        </p>
+        <p class="body-text" style="font-size: 11px; color: #666; margin-top: 5px;">
+            10Y Bond: Price 9,779 | Duration 8.14 | Convexity 78.4
+        </p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Risk Assessment</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+        <div>
+            <table class="data-table">
+                <tr><td>Risk Level</td><td><strong>MEDIUM</strong></td></tr>
+                <tr><td>Risk Score</td><td class="number">50/100</td></tr>
+                <tr><td>VIX</td><td class="number">18.0</td></tr>
+                <tr><td>MOVE (est.)</td><td class="number">99.0</td></tr>
+                <tr><td>Vol Multiplier</td><td class="number">0.891x</td></tr>
+            </table>
+        </div>
+        <div>
+            <div class="highlight-box">
+                <div class="highlight-title">Risk Commentary</div>
+                <p class="body-text" style="font-size: 12px;">
+                    Volatility is at moderate levels. Maintain existing positions while monitoring key indicators.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Investment Recommendation</div>
+    
+    <div class="highlight-box" style="text-align: center; padding: 25px;">
+        <div style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 10px;">Composite Score</div>
+        <div style="font-size: 48px; font-weight: 700; font-family: 'Playfair Display', serif;">80<span style="font-size: 24px; color: #888;">/100</span></div>
+        <div style="font-size: 20px; font-weight: 700; margin-top: 10px;" class="positive">STRONG_BUY</div>
+        <div style="font-size: 14px; color: #666; margin-top: 8px;">Aggressive Buy on Risk Assets</div>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <p class="body-text"><strong>Signal Summary</strong></p>
+        <div style="margin: 10px 0;"><span class="signal-box signal-bullish" style="margin-right: 8px;">Macro: BULLISH</span><span class="signal-box signal-neutral" style="margin-right: 8px;">Risk: MEDIUM</span><span class="signal-box signal-neutral" style="margin-right: 8px;">Sentiment: NEUTRAL</span><span class="signal-box signal-bullish" style="margin-right: 8px;">Rotation: RISK_ON</span></div>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <p class="body-text"><strong>Recommended Allocation</strong></p>
+        <div class="allocation-bar"><div class="allocation-segment" style="width: 70%; background: #222;"></div><div class="allocation-segment" style="width: 20%; background: #666;"></div><div class="allocation-segment" style="width: 10%; background: #bbb;"></div></div>
+        <p style="font-size: 12px; color: #666; text-align: center;">Equities 70% · Bonds 20% · Cash 10%</p>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 20px;">
+        <div>
+            <p class="body-text"><strong>Primary Sector</strong></p>
+            <p style="font-size: 16px; font-weight: 600;">Auto</p>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">Position Size: 10.0%</p>
+        </div>
+        <div>
+            <p class="body-text"><strong>Key Catalysts</strong></p>
+            <ul style="font-size: 12px; color: #444; padding-left: 18px; margin-top: 5px;">
+                <li>Rising global EV demand</li><li>China market recovery</li><li>Export competitiveness from weak KRW</li>
+            </ul>
+        </div>
+    </div>
+    
+    
+</div>
+
+<div class="footer">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+        <div>
+            <p>Generated: 2026-02-04 13:46:59 KST</p>
+            <p>AI Investment Research System v2.0</p>
+        </div>
+        <div style="text-align: right;">
+            <p>Powered by QuantLib + Claude Sonnet 4</p>
+            <p>Data: yfinance, BigKinds</p>
+        </div>
+    </div>
+    
+    <div class="disclaimer">
+        <strong>Disclaimer:</strong> This report is generated by an AI-based automated system and is for reference purposes only, not investment advice. 
+        All investment decisions should be made at the investor's own judgment and responsibility. 
+        Past performance does not guarantee future returns, and investments carry the risk of principal loss.
+        We do not guarantee the accuracy or completeness of the information contained in this material.
+    </div>
+</div>
+</div>
+</body>
+</html>
