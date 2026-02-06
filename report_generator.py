@@ -380,11 +380,22 @@ body { font-family: 'Noto Serif KR', Georgia, serif; background: #f5f5f5; color:
                 <tr><td>WTI Crude</td><td class="number">${oil.get("value", 0):.2f}</td><td>{fmt(oil.get("week_change_pct", 0), "%")}</td></tr>
                 <tr><td>Copper</td><td class="number">${copper.get("value", 0):.2f}</td><td>{fmt(copper.get("week_change_pct", 0), "%")}</td></tr>
                 <tr><td>Bitcoin</td><td class="number">${btc.get("value", 0):,.0f}</td><td>{fmt(btc.get("week_change_pct", 0), "%")}</td></tr>
-                </table>
-                <div class="macro-detail" style="margin-top: 10px;">
-                    {signal_box(sig_gold[0])} Gold: {sig_gold[1]}<br>
-                    {signal_box(sig_oil[0])} Oil: {sig_oil[1]}
-                </div>
+            </table>
+            <div class="macro-detail" style="margin-top: 10px;">
+                {signal_box(sig_gold[0])} Gold: {sig_gold[1]}<br>
+                {signal_box(sig_oil[0])} Oil: {sig_oil[1]}
+            </div>
+        </div>
+        <div class="macro-card">
+            <div class="macro-title">Market Breadth</div>
+            <table class="mini-table" style="width: 100%;">
+                <tr><td>KOSPI 52주 신고가</td><td class="number">-</td><td>-</td></tr>
+                <tr><td>KOSPI 52주 신저가</td><td class="number">-</td><td>-</td></tr>
+                <tr><td>외국인 순매수</td><td class="number">-</td><td>-</td></tr>
+                <tr><td>기관 순매수</td><td class="number">-</td><td>-</td></tr>
+            </table>
+            <div class="macro-detail" style="margin-top: 10px;">
+                <span class="signal-box signal-neutral">NEUTRAL</span> 시장 폭 중립
             </div>
         </div>
     </div>
